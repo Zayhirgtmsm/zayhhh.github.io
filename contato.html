@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contato | Doces Silva</title>
+  <meta name="description" content="Solicite um orçamento ou envie seu currículo para a Doces Silva.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="pagina">
+    <div id="sentinela-topo"></div>
+  <div class="barra-topo">
+    <a href="mailto:docesilva.maquine@gmail.com">docesilva.maquine@gmail.com</a>
+    <span>
+      <a href="#">Facebook</a>
+      <a href="#">Instagram</a>
+    </span>
+  </div>
+
+  <header class="topo">
+    <a class="logo" href="index.html"><img src="logov2.png" alt="Doces Silva"></a>
+    <button class="menu-botao" aria-label="Abrir menu" aria-expanded="false">Menu</button>
+    <nav class="menu" id="menu">
+      <a href="index.html#inicio">Home</a>
+      <a href="index.html#empresa">Empresa</a>
+      <a href="produtos.html">Produtos</a>
+      <a href="index.html#mercados">Onde encontrar</a>
+      <a href="index.html#representantes">Representantes</a>
+      <a href="contato.html">Contato</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="secao">
+      <h1>Fale com a gente</h1>
+      <p>Preencha o formulário conforme sua necessidade.</p>
+
+      <form class="form-contato" id="form-contato" action="https://formspree.io/f/docesilva.maquine@gmail.com" method="post" enctype="multipart/form-data">
+  <!-- action: aponta para o Formspree, que recebe os dados e reenvia por e-mail
+       para docesilva.maquine@gmail.com. Veja o passo de ativação nas instruções abaixo. -->
+  <input type="hidden" name="_subject" value="Novo contato pelo site — Doces Silva">
+
+        <label for="nome">Nome completo</label>
+        <input type="text" id="nome" name="nome" required>
+
+        <label for="email-contato">E-mail</label>
+        <input type="email" id="email-contato" name="email" required>
+
+        <label for="telefone">Telefone / WhatsApp</label>
+        <input type="tel" id="telefone" name="telefone" placeholder="(00) 00000-0000">
+
+        <label for="motivo">Motivo do contato</label>
+        <select id="motivo" name="motivo" required>
+          <option value="orcamento">Solicitar orçamento</option>
+          <option value="emprego">Trabalhe conosco (enviar currículo)</option>
+        </select>
+
+        <!-- Campos que só aparecem para pedido de orçamento -->
+        <div id="campo-orcamento">
+          <label for="mensagem">Conte o que você precisa</label>
+          <textarea id="mensagem" name="mensagem" rows="5" placeholder="Quais produtos, quantidade, para quando..."></textarea>
+        </div>
+
+        <!-- Campos que só aparecem para envio de currículo -->
+        <div id="campo-curriculo" class="oculto">
+          <label for="cargo">Vaga de interesse</label>
+          <input type="text" id="cargo" name="cargo" placeholder="Ex.: Produção, Vendas, Entrega">
+
+          <label for="curriculo">Currículo (PDF ou Word)</label>
+          <input type="file" id="curriculo" name="curriculo" accept=".pdf,.doc,.docx">
+
+          <p class="aviso-whatsapp">
+            Prefere o WhatsApp? Clique em "Enviar pelo WhatsApp" abaixo e anexe o currículo
+            diretamente na conversa.
+          </p>
+        </div>
+
+        <div class="botoes-envio">
+          <button class="botao" type="submit">Enviar por e-mail</button>
+          <button class="botao claro" type="button" id="btn-whatsapp">Enviar pelo WhatsApp</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <nav aria-label="Rodapé">
+      <a href="index.html#inicio">Home</a>
+      <a href="produtos.html">Produtos</a>
+      <a href="contato.html">Contato</a>
+      <a href="#">Política de Privacidade</a>
+    </nav>
+    <form class="news" action="#">
+      <label for="email">Cadastre seu e-mail e receba novidades</label>
+      <input type="email" id="email" name="email" placeholder="seu@email.com" required>
+      <button class="botao" type="submit">Cadastrar</button>
+    </form>
+    <p>&copy; <span id="ano"></span> Doces Silva. Todos os direitos reservados.</p>
+  </footer>
+
+  </div>
+
+  <div class="cookies" id="cookies" role="dialog" aria-label="Aviso de cookies">
+    <p><strong>Este site utiliza cookies</strong> para melhorar a sua experiência. Ao clicar em aceitar, você concorda com o uso.</p>
+    <button class="botao" id="aceitar" type="button">Aceitar</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

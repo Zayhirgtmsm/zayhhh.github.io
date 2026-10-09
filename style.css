@@ -1,0 +1,342 @@
+/* ---------- Variáveis: mude cores e fontes só aqui ---------- */
+:root {
+  --fundo: #F9F1E1;            /* Soft Almond: fundo geral do site */
+  --fundo-pagina: #5D4037;     /* Rich Chocolate: cabeçalho, rodapé e margem (áreas estruturais) */
+  --texto: #5D4037;            /* Rich Chocolate: texto principal, sobre fundo claro */
+  --texto-claro: #F9F1E1;      /* Soft Almond: texto sobre fundo escuro (cabeçalho/rodapé) */
+  --suave: #8d6e63;            /* Chocolate mais claro: texto secundário */
+  --verde: #0277BD;            /* Vibrant Cerulean: links, navegação, botões secundários */
+  --verde-esc: #01579B;        /* Cerulean mais escuro, para hover */
+  --dourado: #D81B60;          /* Raspberry Sorbet: botão de ação primária (CTA), destaques */
+  --dourado-esc: #AD1457;      /* Raspberry mais escuro, para hover do CTA */
+  --caramelo: #C19A6B;         /* Warm Caramel: fundo de cards e blocos secundários */
+  --linha: #e3d3b4;            /* tom claro do caramelo, para bordas discretas */
+  --titulo: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+  --corpo: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }   /* padding não aumenta a largura */
+html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+body { margin: 0; font: 1.0625rem/1.65 var(--corpo); color: var(--texto); background: var(--fundo-pagina); }
+#sentinela-topo {
+  position: absolute;   /* sai do fluxo normal, não empurra o conteúdo para baixo */
+  top: 0;
+  left: 0;
+  height: 80px;          /* mesma altura em que a logo deve sumir */
+  width: 1px;
+  pointer-events: none;
+}
+.pagina {
+  max-width: 1200px;         /* largura do conteúdo; ajuste esse número se quiser margens maiores/menores */
+  margin: 0 auto;            /* centraliza na tela */
+  background: var(--fundo);  /* cor do conteúdo, diferente da margem */
+  position: relative;
+}
+.slogan{
+   font-family: var(--titulo); line-height: 1.2; margin: 0 0 .75rem;
+   font-size: clamp(2rem, 5vw, 3.4rem);
+   text-align: justify;
+}
+
+h1, h2, h3 { font-family: var(--titulo); line-height: 1.2; margin: 0 0 .75rem; }
+h1 { font-size: clamp(2rem, 5vw, 3.4rem); }
+h2 { font-size: 1.8rem; }
+p { margin: 0 0 1rem; max-width: 65ch; }
+a { color: var(--verde); }
+:focus-visible { outline: 3px solid var(--dourado); outline-offset: 3px; }
+
+/* ---------- Faixa de contato e topo ---------- */
+.barra-topo { display: flex; justify-content: space-between; gap: 1rem; padding: .4rem 1.25rem; background: var(--caramelo); font-size: .875rem; }
+.barra-topo a { color: var(--texto); text-decoration: none; margin-left: .75rem; }
+.barra-topo > a { margin-left: 0; }
+.men1{position: relative; }
+.topo {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;   /* empilha: logo em cima, menu embaixo */
+  align-items: center;      /* centraliza os dois */
+  gap: .6rem;               /* espaço entre a logo e o menu */
+  padding: .9rem 1.25rem;
+  background: var(--fundo-pagina);
+  border-bottom: 1px solid var(--texto);
+}
+.logo {
+  display: flex;
+  justify-content: center;   /* centraliza a imagem horizontalmente dentro da faixa */
+  align-items: center;
+  width: 100%;                /* estica até as margens do cabeçalho */
+  text-decoration: none;
+  overflow: hidden;
+  box-sizing: border-box;
+  transition: height .5s cubic-bezier(.4, 0, .2, 1), opacity .5s cubic-bezier(.4, 0, .2, 1), padding .5s cubic-bezier(.4, 0, .2, 1);
+  height: calc(225px + 2rem);
+  opacity: 1;
+  background: var(--caramelo);
+  padding: 1rem;
+}
+.logo img {
+  height: 225px;       /* mesmo valor da .logo acima, para não distorcer durante a transição */
+  width: auto;          /* mantém a proporção original, sem distorcer */
+  display: block;
+}
+
+/* Quando a página rola: a logo encolhe até sumir */
+.topo.rolou .logo {
+  height: 0;
+  padding: 0;
+  opacity: 0;   /* some suavemente, em vez de só espremer */
+}
+.menu { display: flex; flex-wrap: wrap; justify-content: center; gap: 2.2rem; }
+.menu a {
+  color: var(--texto-claro);
+  text-decoration: none;
+  padding: .5rem 1rem;
+  border: 1px solid var(--suave);
+  border-radius: 8px;
+}
+.menu a:hover {
+  color: var(--verde);
+  border-color: var(--verde);
+}
+.menu-botao { display: none; }
+
+/* ---------- Blocos da página ---------- */
+.hero { padding: 6rem 1.25rem; max-width: 960px; margin: 0 auto; }
+.faixa { background: var(--dourado); color: var(--texto-claro); padding: 1.5rem 1.25rem; text-align: center; font: 1.4rem var(--titulo); }
+.faixa p { margin: 0 auto; max-width: none; }
+.faixa strong { color: var(--texto-claro); }
+
+.secao { max-width: 960px; margin: 0 auto; padding: 4rem 1.25rem; }
+.secao.escura { max-width: none; background: var(--caramelo); color: var(--texto); }
+.secao.escura > * { max-width: 960px; margin-left: auto; margin-right: auto; }
+.secao.escura h2, .secao.escura h3, .secao.escura p { display: block; }
+
+.botao { display: inline-block; padding: .7rem 1.4rem; border: 0; border-radius: 6px; background: var(--dourado); color: var(--texto-claro); font: 600 1rem var(--corpo); text-decoration: none; cursor: pointer; }
+.botao:hover { background: var(--dourado-esc); }
+.botao.claro { background: var(--texto); color: var(--texto-claro); }
+.botao.claro:hover { background: var(--dourado); }
+
+.secao.escura .botao {
+  display: block;
+  width: fit-content;
+  margin: 1rem auto 0;
+}
+
+.busca { display: flex; flex-wrap: wrap; gap: .6rem; align-items: center; margin-bottom: 2rem; }
+input { font: inherit; padding: .65rem .8rem; border: 1px solid var(--linha); border-radius: 6px; min-width: 220px; }
+
+.mercados { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.5rem; }
+
+.carrossel { position: relative; display: flex; align-items: center; gap: .5rem; }
+
+.carrossel-janela {
+  overflow: hidden;      /* corta exatamente aqui, isolado dos botões */
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0 .5rem;        /* a "margem" que separa a janela das setas */
+  background: var(--caramelo);   /* fundo do carrossel */
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.grade {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 1.5rem;
+  transition: transform .5s ease;
+  width: 100%;
+  min-width: 0;
+}
+.grade > li {
+  flex: 0 0 calc((100% - 3rem) / 3);  /* 3 itens por vez, descontando os 2 gaps de 1.5rem entre eles */
+  min-width: 0;
+}
+
+.seta {
+  flex: 0 0 auto;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid var(--linha);
+  border-radius: 50%;
+  background: var(--fundo);
+  color: var(--verde);
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.seta:hover { background: var(--verde); color: var(--texto-claro); }
+.foto {
+  width: 100%;             /* ocupa toda a largura do card */
+  aspect-ratio: 4 / 3;      /* mantém a mesma proporção em todas */
+  object-fit: contain;        /* corta a sobra em vez de esticar/distorcer */
+  display: block;
+  border-radius: 16px;
+  margin-bottom: .75rem;
+}
+.mercados { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.mercados li { padding: 0 0 1rem; border: 1px solid var(--linha); border-radius: 12px; text-align: center; overflow: hidden; transition: background .2s ease; }
+.mercados li:hover { background: var(--caramelo); }
+.mercados .foto-mercado {
+  width: 100%;
+  height: 160px;
+  overflow: hidden;
+  margin-bottom: .75rem;
+  background: #fff;   /* combina com o fundo branco já embutido nas imagens */
+}
+.mercados img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;   /* mostra a logo inteira, sem cortar — adequado para marcas */
+  display: block;
+}
+.mercados h3 { font-size: 1.1rem; margin-bottom: .25rem; padding: 0 .75rem; }
+.mercados .endereco { font-size: .9rem; color: var(--suave); margin: 0; padding: 0 .75rem; }
+.depoimentos { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+blockquote { margin: 0; padding-left: 1rem; border-left: 4px solid var(--dourado); }
+blockquote footer { color: var(--suave); font-size: .9rem; }
+
+/* ---------- Rodapé e cookies ---------- */
+.rodape { padding: 2.5rem 1.25rem; background: var(--fundo-pagina); color: var(--texto-claro); text-align: center; }
+.rodape a { color: var(--texto-claro); margin: 0 .6rem; }
+.rodape p { margin: 1.25rem auto 0; font-size: .9rem; }
+.news { margin-top: 1.5rem; display: flex; flex-wrap: wrap; gap: .6rem; justify-content: center; align-items: center; }
+.news .botao { color: var(--texto-claro); }
+
+.cookies { position: fixed; left: 1rem; right: 1rem; bottom: 1rem; z-index: 20; display: none; align-items: center; gap: 1rem; justify-content: space-between; padding: 1rem 1.25rem; background: var(--fundo); border: 1px solid var(--linha); border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,.15); }
+.cookies.visivel { display: flex; }
+.cookies p { margin: 0; font-size: .95rem; }
+
+/* ---------- Celular ---------- */
+@media (max-width: 700px) {
+  .hero { padding: 4rem 1.25rem; }
+  .cookies { flex-direction: column; align-items: stretch; }
+   .topo {
+    flex-direction: row;              /* no celular, volta a ficar em linha */
+    justify-content: space-between;   /* logo à esquerda, botão "Menu" à direita */
+  }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; }  .grade > li { flex-basis: 100%; } }
+
+
+/* ---------- Página de produtos detalhada ---------- */
+.detalhe-produtos {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1rem 1.25rem 4rem;
+  display: grid;
+  gap: 2rem;
+}
+.cartao-produto {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 1.5rem;
+  align-items: start;
+  background: var(--caramelo);
+  border-radius: 16px;
+  padding: 1.25rem;
+}
+.cartao-produto img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: contain;
+  border-radius: 12px;
+  display: block;
+}
+.cartao-produto h2 { margin-bottom: .25rem; }
+
+
+@media (max-width: 600px) {
+  .cartao-produto { grid-template-columns: 1fr; }
+}
+
+/* ---------- Formulário de contato ---------- */
+.form-contato {
+  display: grid;
+  gap: .4rem;
+  max-width: 560px;
+}
+.form-contato label { font-weight: 600; margin-top: .75rem; }
+.form-contato input,
+.form-contato select,
+.form-contato textarea {
+  font: inherit;
+  padding: .65rem .8rem;
+  border: 1px solid var(--linha);
+  border-radius: 6px;
+  background: var(--fundo);
+  color: var(--texto);
+  width: 100%;
+}
+.form-contato textarea { resize: vertical; }
+.form-contato button { margin-top: 1.5rem; justify-self: start; }
+.oculto { display: none; }
+.botoes-envio { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.5rem; }
+.botoes-envio .botao { margin-top: 0; }
+.aviso-whatsapp { font-size: .9rem; color: var(--suave); margin-top: .5rem; }
+
+/* ---------- Representantes ---------- */
+.representantes {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  margin-top: 2rem;
+}
+.cartao-representante {
+  background: var(--caramelo);
+  border-radius: 16px;
+  padding: 1.5rem;
+  text-align: center;
+}
+.cartao-representante img {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 50%;        /* foto redonda */
+  margin: 0 auto 1rem;
+  display: block;
+  border: 3px solid var(--fundo);
+}
+.cartao-representante .cargo {
+  display: inline-block;
+  font-size: .8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: var(--dourado);
+  margin-bottom: .25rem;
+}
+.cartao-representante h3 { margin-bottom: .5rem; }
+.cartao-representante .info-contato {
+  font-size: .95rem;
+  margin-bottom: .75rem;
+}
+.cartao-representante .info-contato a { color: var(--texto); }
+.cartao-representante p:last-child {
+  margin: 0 auto;
+  max-width: 32ch;
+  color: var(--suave);
+  font-size: .95rem;
+}
+
+@media (max-width: 700px) {
+  .representantes { grid-template-columns: 1fr; }
+}
+
+.icone-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  margin-left: .4rem;
+  vertical-align: middle;
+  color: var(--texto-claro);
+  background: #25D366;        /* verde característico do WhatsApp */
+  border-radius: 50%;
+}
+.icone-whatsapp:hover { background: #1DA851; }
